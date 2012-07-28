@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classBurg.html" title="Represents estimation using Burg&#39;s recursive method.">Burg</a>'s method and autoregressive model selection.  
+<p>Burg's method and autoregressive model selection.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
 <code>#include &lt;cassert&gt;</code><br/>
@@ -116,7 +116,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYuleWalker.html">YuleWalker&lt; MeanHandling &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents estimation by solving the Yule&ndash;Walker equations.  <a href="classYuleWalker.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBurg.html">Burg&lt; MeanHandling &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents estimation using <a class="el" href="classBurg.html" title="Represents estimation using Burg&#39;s recursive method.">Burg</a>'s recursive method.  <a href="classBurg.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents estimation using Burg's recursive method.  <a href="classBurg.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLSFB.html">LSFB&lt; MeanHandling &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents forward and backward prediction least squares minimization.  <a href="classLSFB.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLSF.html">LSF&lt; MeanHandling &gt;</a></td></tr>
@@ -188,7 +188,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae2563c52eba50e7ac77d2b6bb2e40815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain the best model according to <a class="el" href="structcriterion.html">criterion</a> applied to \(\sigma^2_\epsilon\) given a hierarchy of candidates.  <a href="#ae2563c52eba50e7ac77d2b6bb2e40815"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classBurg.html" title="Represents estimation using Burg&#39;s recursive method.">Burg</a>'s method and autoregressive model selection. </p>
+<div class="textblock"><p>Burg's method and autoregressive model selection. </p>
 <p>The selection criteria routines might be sped up for floating point arguments given an appropriate digamma (psi) or Pochhammer symbol implementation. To do so with the GNU Scientific Library, e.g., try </p>
 <div class="fragment"><div class="line"><span class="preprocessor">     #include &lt;gsl/gsl_sf_psi.h&gt;</span></div>
 <div class="line"><span class="preprocessor">     #define BURG_DIGAMMA(x) gsl_sf_psi(x)</span></div>
@@ -406,9 +406,9 @@ template&lt;class InputIterator , class Value , class OutputIterator1 , class Ou
 </div><div class="memdoc">
 
 <p>Algorithms for autoregressive parameter estimation and manipulation. </p>
-<p>Fit an autoregressive model to stationary time series data using <a class="el" href="classBurg.html" title="Represents estimation using Burg&#39;s recursive method.">Burg</a>'s method. That is, assuming a zero-mean model </p>
+<p>Fit an autoregressive model to stationary time series data using Burg's method. That is, assuming a zero-mean model </p>
 <p class="formulaDsp">
-\begin{align} x_n + a_1 x_{n - 1} + \dots + a_p x_{n - p} &amp;= \epsilon_n &amp; \epsilon_n &amp;\sim{} N\left(0, \sigma^2_epsilon\right) \\ \rho_k + a_1 \rho_{k-1} + \dots + a_p \rho_{k-p} &amp;= 0 &amp; k &amp;\geq{} p \end{align}
+\begin{align} x_n + a_1 x_{n - 1} + \dots + a_p x_{n - p} &amp;= \epsilon_n &amp; \epsilon_n &amp;\sim{} N\left(0, \sigma^2_\epsilon\right) \\ \rho_k + a_1 \rho_{k-1} + \dots + a_p \rho_{k-p} &amp;= 0 &amp; k &amp;\geq{} p \end{align}
 </p>
 <p> find coefficients \(a_i\) such that the sum of the squared errors in the forward predictions \(x_n = -a_1 x_{n-1} - \dots - a_p x_{n-p}\) and backward predictions \(x_n = -a_1 x_{n+1} - \dots - a_p x_{n+p}\) are both minimized. Either a single model of given order or a hierarchy of models up to and including a maximum order may fit.</p>
 <p>The input data \(\vec{x}\) are read from <code>[data_first,data_last)</code> in a single pass. The mean is computed using pairwise summation, returned in <code>mean</code>, and <em>removed</em> from further consideration whenever <code>subtract_mean</code> is true. The estimated model parameters \(a_i\) are output using <code>params_first</code> with the behavior determined by the amount of data read, <code>maxorder</code>, and the <code>hierarchy</code> flag: </p>
@@ -656,7 +656,7 @@ template&lt;class RandomAccessIterator , class InputIterator , class OutputItera
 <p class="formulaDsp">
 \[ L_{n+1} s_{n+1} = d_{n+1} \mbox{ where } L_{n+1} = \bigl(\begin{smallmatrix} 1 &amp; \tilde{a}_n \\ r_n &amp; L_n \end{smallmatrix}\bigr) \]
 </p>
-<p> given \(\vec{a}\), \(\vec{r}\), and \(\vec{d}\). The dimension of the problem is fixed by <code>n = distance(a_first, a_last)</code>. A symmetric Toeplitz solve can be performed by having \(\vec{a}\) and \(vec{r}\) iterate over the same data. The Hermitian case requires two buffers with \(vec{r}\) being the conjugate of \(\vec{a}\). The working precision is fixed by the <code>value_type</code> of <code>d_first</code>.</p>
+<p> given \(\vec{a}\), \(\vec{r}\), and \(\vec{d}\). The dimension of the problem is fixed by <code>n = distance(a_first, a_last)</code>. A symmetric Toeplitz solve can be performed by having \(\vec{a}\) and \(\vec{r}\) iterate over the same data. The Hermitian case requires two buffers with \(vec{r}\) being the conjugate of \(\vec{a}\). The working precision is fixed by the <code>value_type</code> of <code>d_first</code>.</p>
 <p>The algorithm is from Zohar, Shalhav. "The Solution of a Toeplitz Set of
  Linear Equations." J. ACM 21 (April 1974): 272-276. <a href="http://dx.doi.org/10.1145/321812.321822">http://dx.doi.org/10.1145/321812.321822</a>. It has complexity like <code>O(2*(n+1)^2)</code>. Zohar improved upon earlier work from Page 1504 from Trench, William F. "Weighting Coefficients for the Prediction of Stationary
  Time Series from the Finite Past." SIAM Journal on Applied Mathematics 15 (November 1967): 1502-1510. <a href="http://www.jstor.org/stable/2099503">http://www.jstor.org/stable/2099503</a>. See Bunch, James R. "Stability of Methods for Solving Toeplitz Systems of
@@ -792,7 +792,7 @@ template&lt;class RandomAccessIterator , class ForwardIterator &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 27 2012 18:01:46 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 28 2012 14:03:57 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
