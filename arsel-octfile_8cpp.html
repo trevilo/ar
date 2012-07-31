@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ar: example.cpp File Reference</title>
+<title>ar: arsel-octfile.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -65,30 +65,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">example.cpp File Reference</div>  </div>
+<div class="title">arsel-octfile.cpp File Reference</div>  </div>
 </div>
 <div class="contents">
 
-<p>Example program using <a class="el" href="namespacear.html#a8092b6678796a06c048dd89153273f60">ar::burg_method</a> and <a class="el" href="namespacear.html#a299e4eda569cae92a2a5192da4f2b6cb">ar::evaluate_models</a>.  
+<p>A GNU Octave wrapper estimating the best AR(p) model given signal input.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ar_8hpp_source.html">ar.hpp</a>&quot;</code><br/>
-<code>#include &lt;cmath&gt;</code><br/>
-<code>#include &lt;cstdio&gt;</code><br/>
-<code>#include &lt;iostream&gt;</code><br/>
+<code>#include &lt;algorithm&gt;</code><br/>
+<code>#include &lt;cstdlib&gt;</code><br/>
 <code>#include &lt;iterator&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
+<code>#include &lt;octave/oct.h&gt;</code><br/>
 </div>
-<p><a href="example_8cpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="arsel-octfile_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a><!-- doxytag: member="example.cpp::main" ref="a0ddf1224851353fc92bfbff6f499fa97" args="(int argc, char *argv[])" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae596587626546960bcad60808c11ef88"></a><!-- doxytag: member="arsel&#45;octfile.cpp::DEFUN_DLD" ref="ae596587626546960bcad60808c11ef88" args="(arsel, args, nargout,&quot;\t[A, mu, sigma2eps, eff_sigma2x, T0] = arsel (d, submean=true, order=512)\n&quot;&quot;\tAutomatically fit an autoregressive model to an input signal.\n&quot;&quot;\t\n&quot;&quot;\tUse ar::burg_method followed by ar::best_model&lt;CIC&lt;Burg&lt;MeanHandling &gt; &gt;\n&quot;&quot;\tto obtain the most likely autoregressive process for input signal d.\n&quot;&quot;\tThe sample mean of d will be subtracted whenever submean is true.\n&quot;&quot;\tModel orders zero through min(size(d), order) will be considered.\n&quot;&quot;\t\n&quot;&quot;\tThe filter()&#45;ready process parameters are returned in A, the sample mean\n&quot;&quot;\tin mu, and the innovation variance \\sigma^2_\\epsilon in sigma2eps.\n&quot;&quot;\tGiven the observed autocorrelation structure, a decorrelation time T0 is\n&quot;&quot;\tcomputed and used to estimate the effective signal variance eff_sigma2x.\n&quot;&quot;\t\n&quot;&quot;\tOne may simulate N samples from the fitted process by afterwards calling:\n&quot;&quot;\t\n&quot;&quot;\t\tx = mu + filter([1], A, sqrt(sigma2eps)*randn(N,1));\n&quot;&quot;\t\n&quot;)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>DEFUN_DLD</b> (arsel, args, nargout,&quot;\t[A, mu, sigma2eps, eff_sigma2x, T0] = arsel (d, submean=true, order=512)\n&quot;&quot;\tAutomatically fit an autoregressive model to an input signal.\n&quot;&quot;\t\n&quot;&quot;\tUse ar::burg_method followed by ar::best_model&lt;CIC&lt;Burg&lt;MeanHandling &gt; &gt;\n&quot;&quot;\tto obtain the most likely autoregressive process for input signal d.\n&quot;&quot;\tThe sample mean of d will be subtracted whenever submean is true.\n&quot;&quot;\tModel orders zero through min(size(d), order) will be considered.\n&quot;&quot;\t\n&quot;&quot;\tThe filter()-ready process parameters are returned in A, the sample mean\n&quot;&quot;\tin mu, and the innovation variance \\sigma^2_\\epsilon in sigma2eps.\n&quot;&quot;\tGiven the observed autocorrelation structure, a decorrelation time T0 is\n&quot;&quot;\tcomputed and used to estimate the effective signal variance eff_sigma2x.\n&quot;&quot;\t\n&quot;&quot;\tOne may simulate N samples from the fitted process by afterwards calling:\n&quot;&quot;\t\n&quot;&quot;\t\tx = mu + filter([1], A, sqrt(sigma2eps)*randn(N,1));\n&quot;&quot;\t\n&quot;)</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Example program using <a class="el" href="namespacear.html#a8092b6678796a06c048dd89153273f60">ar::burg_method</a> and <a class="el" href="namespacear.html#a299e4eda569cae92a2a5192da4f2b6cb">ar::evaluate_models</a>. </p>
+<div class="textblock"><p>A GNU Octave wrapper estimating the best AR(p) model given signal input. </p>
+<p>Compare <a class="el" href="arsel_8cpp.html">arsel.cpp</a>. </p>
 
-<p>Definition in file <a class="el" href="example_8cpp_source.html">example.cpp</a>.</p>
+<p>Definition in file <a class="el" href="arsel-octfile_8cpp_source.html">arsel-octfile.cpp</a>.</p>
 </div></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
