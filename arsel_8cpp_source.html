@@ -147,25 +147,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                N, params, sigma2e, gain, autocor);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Output some details about the best model</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    cout.precision(numeric_limits&lt;double&gt;::digits10 + 2);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    cout &lt;&lt; showpos</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;         &lt;&lt;   <span class="stringliteral">&quot;# N                   &quot;</span>   &lt;&lt; N</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# AR(p)               &quot;</span>   &lt;&lt; params.size()</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Mean                &quot;</span>   &lt;&lt; mean</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_\\epsilon   &quot;</span> &lt;&lt; sigma2e[0]</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Gain                &quot;</span>   &lt;&lt; gain[0]</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_x          &quot;</span>  &lt;&lt; gain[0]*sigma2e[0]</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;         &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    copy(params.begin(), params.end(), ostream_iterator&lt;double&gt;(cout,<span class="stringliteral">&quot;\n&quot;</span>));</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    cout.flush();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Compute decorrelation time from the estimated autocorrelation model</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> T0  = decorrelation_time(N, <a class="code" href="burg_8hpp.html#a121d69fc2f687720a3df3c4476a5964e" title="Construct an iterator over the autocorrelation function  given process parameters and initial conditi...">autocorrelation</a>(</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                params.begin(), params.end(), gain[0], autocor.begin()));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Output details about the best model and derived information</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    cout.precision(numeric_limits&lt;double&gt;::digits10 + 2);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    cout &lt;&lt; showpos</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;         &lt;&lt;   <span class="stringliteral">&quot;# N                   &quot;</span>   &lt;&lt; N</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# AR(p)               &quot;</span>   &lt;&lt; params.size()</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Mean                &quot;</span>   &lt;&lt; mean</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_\\epsilon   &quot;</span> &lt;&lt; sigma2e[0]</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Gain                &quot;</span>   &lt;&lt; gain[0]</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_x          &quot;</span>  &lt;&lt; gain[0]*sigma2e[0]</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# t_decorrelation     &quot;</span>   &lt;&lt; T0</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# N_effective         &quot;</span>   &lt;&lt; N / T0</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Variance_effective  &quot;</span>   &lt;&lt; (N*gain[0]*sigma2e[0]) / (N - T0)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;         &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    copy(params.begin(), params.end(), ostream_iterator&lt;double&gt;(cout,<span class="stringliteral">&quot;\n&quot;</span>));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    cout.flush();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 28 2012 14:03:57 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 31 2012 00:37:18 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

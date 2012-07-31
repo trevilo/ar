@@ -158,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Given right hand side containing rho_1, ..., rho_p the solution should</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// be -a_1, ..., -a_p on success so adding to it a_1, ..., a_p gives errors.</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    vector&lt;real&gt; rhs(++cor.begin(), cor.end());</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="burg_8hpp.html#ac9a335bdd9d371c9a75e6b3d33c9eb42" title="Solve a Toeplitz set of linear equations.">zohar_linear_solve</a>(++cor.begin(), --cor.end(), rhs.begin());</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="burg_8hpp.html#ac9a335bdd9d371c9a75e6b3d33c9eb42" title="Compute the decorrelation time for variance of the mean given autocorrelation details.">zohar_linear_solve</a>(++cor.begin(), --cor.end(), rhs.begin());</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    transform(rhs.begin(), rhs.end(), est.begin(), rhs.begin(), plus&lt;real&gt;());</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    real res = accumulate(rhs.begin(), rhs.end(), real(0), <a class="code" href="structsum__error.html">sum_error&lt;real&gt;</a>());</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 28 2012 14:03:57 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 31 2012 00:37:18 for Burg by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
