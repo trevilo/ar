@@ -152,6 +152,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper to compute \(\frac{1+v}{1-v}\) for the method in use. <br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1CIC.html">ar::CIC&lt; EstimationMethod &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the combined information criterion (<a class="el" href="structar_1_1CIC.html" title="Represents the combined information criterion (CIC) as applied to a particular estimation_method.">CIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1CIC.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classar_1_1strided__adaptor.html">ar::strided_adaptor&lt; Iterator &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An adapter to add striding over another (usually random access) iterator.  <a href="classar_1_1strided__adaptor.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -180,9 +182,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6164224fd503bede95e82cd17efe9602"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a6164224fd503bede95e82cd17efe9602">ar::welford_covariance_sample</a> (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, OutputType1 &amp;mean1, OutputType2 &amp;mean2, OutputType3 &amp;covar)</td></tr>
 <tr class="memdesc:a6164224fd503bede95e82cd17efe9602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute means and the sample covariance using Welford's algorithm.  <a href="#a6164224fd503bede95e82cd17efe9602"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a670daa7e96d698681f914427999105fd"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class Value , class OutputIterator1 , class OutputIterator2 , class OutputIterator3 , class OutputIterator4 , class Vector &gt; </td></tr>
+<tr class="memitem:a670daa7e96d698681f914427999105fd"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">ar::burg_method</a> (InputIterator data_first, InputIterator data_last, Value &amp;mean, std::size_t &amp;maxorder, OutputIterator1 params_first, OutputIterator2 sigma2e_first, OutputIterator3 gain_first, OutputIterator4 autocor_first, const bool subtract_mean, const bool hierarchy, Vector &amp;f, Vector &amp;b, Vector &amp;Ak, Vector &amp;ac)</td></tr>
+<tr class="memdesc:a670daa7e96d698681f914427999105fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.  <a href="#a670daa7e96d698681f914427999105fd"></a><br/></td></tr>
 <tr class="memitem:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class Value , class OutputIterator1 , class OutputIterator2 , class OutputIterator3 , class OutputIterator4 &gt; </td></tr>
 <tr class="memitem:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">ar::burg_method</a> (InputIterator data_first, InputIterator data_last, Value &amp;mean, std::size_t &amp;maxorder, OutputIterator1 params_first, OutputIterator2 sigma2e_first, OutputIterator3 gain_first, OutputIterator4 autocor_first, const bool subtract_mean=false, const bool hierarchy=false)</td></tr>
-<tr class="memdesc:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.  <a href="#a430964ca6f3d8fc2b6a00416bf4b3ab5"></a><br/></td></tr>
+<tr class="memdesc:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.   <a href="#a430964ca6f3d8fc2b6a00416bf4b3ab5"></a><br/></td></tr>
 <tr class="memitem:a7a5016706d3db6d6b5d8c8cf9939dcfb"><td class="memTemplParams" colspan="2">template&lt;class RandomAccessIterator , class InputIterator , class Value &gt; </td></tr>
 <tr class="memitem:a7a5016706d3db6d6b5d8c8cf9939dcfb"><td class="memTemplItemLeft" align="right" valign="top">predictor&lt; typename <br class="typebreak"/>
 std::iterator_traits<br class="typebreak"/>
@@ -233,7 +238,7 @@ std::iterator_traits<br class="typebreak"/>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 9 2012 13:56:06 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 12 2012 17:08:10 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

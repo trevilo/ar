@@ -139,6 +139,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the finite sample information criterion (<a class="el" href="structar_1_1FSIC.html" title="Represents the finite sample information criterion (FSIC) as applied to a particular estimation_metho...">FSIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1FSIC.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1CIC.html">CIC</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the combined information criterion (<a class="el" href="structar_1_1CIC.html" title="Represents the combined information criterion (CIC) as applied to a particular estimation_method.">CIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1CIC.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classar_1_1strided__adaptor.html">strided_adaptor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An adapter to add striding over another (usually random access) iterator.  <a href="classar_1_1strided__adaptor.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -162,9 +164,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6164224fd503bede95e82cd17efe9602"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a6164224fd503bede95e82cd17efe9602">welford_covariance_sample</a> (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, OutputType1 &amp;mean1, OutputType2 &amp;mean2, OutputType3 &amp;covar)</td></tr>
 <tr class="memdesc:a6164224fd503bede95e82cd17efe9602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute means and the sample covariance using Welford's algorithm.  <a href="#a6164224fd503bede95e82cd17efe9602"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a670daa7e96d698681f914427999105fd"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class Value , class OutputIterator1 , class OutputIterator2 , class OutputIterator3 , class OutputIterator4 , class Vector &gt; </td></tr>
+<tr class="memitem:a670daa7e96d698681f914427999105fd"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a> (InputIterator data_first, InputIterator data_last, Value &amp;mean, std::size_t &amp;maxorder, OutputIterator1 params_first, OutputIterator2 sigma2e_first, OutputIterator3 gain_first, OutputIterator4 autocor_first, const bool subtract_mean, const bool hierarchy, Vector &amp;f, Vector &amp;b, Vector &amp;Ak, Vector &amp;ac)</td></tr>
+<tr class="memdesc:a670daa7e96d698681f914427999105fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.  <a href="#a670daa7e96d698681f914427999105fd"></a><br/></td></tr>
 <tr class="memitem:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class Value , class OutputIterator1 , class OutputIterator2 , class OutputIterator3 , class OutputIterator4 &gt; </td></tr>
 <tr class="memitem:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a> (InputIterator data_first, InputIterator data_last, Value &amp;mean, std::size_t &amp;maxorder, OutputIterator1 params_first, OutputIterator2 sigma2e_first, OutputIterator3 gain_first, OutputIterator4 autocor_first, const bool subtract_mean=false, const bool hierarchy=false)</td></tr>
-<tr class="memdesc:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.  <a href="#a430964ca6f3d8fc2b6a00416bf4b3ab5"></a><br/></td></tr>
+<tr class="memdesc:a430964ca6f3d8fc2b6a00416bf4b3ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithms for autoregressive parameter estimation and manipulation.   <a href="#a430964ca6f3d8fc2b6a00416bf4b3ab5"></a><br/></td></tr>
 <tr class="memitem:a7a5016706d3db6d6b5d8c8cf9939dcfb"><td class="memTemplParams" colspan="2">template&lt;class RandomAccessIterator , class InputIterator , class Value &gt; </td></tr>
 <tr class="memitem:a7a5016706d3db6d6b5d8c8cf9939dcfb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classar_1_1predictor.html">predictor</a>&lt; typename <br class="typebreak"/>
 std::iterator_traits<br class="typebreak"/>
@@ -266,7 +271,7 @@ template&lt;class RandomAccessIterator , class InputIterator , class Value &gt; 
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>An InputIterator across the autocorrelation function starting with \(rho_0\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00811">811</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00845">845</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -321,10 +326,10 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 </div><div class="memdoc">
 
 <p>Obtain the best model according to <a class="el" href="structar_1_1criterion.html">criterion</a> applied to \(\sigma^2_\epsilon\) given a hierarchy of candidates. </p>
-<p>On input, <code>params</code>, <code>sigma2e</code>, <code>gain</code>, and <code>autocor</code> should be <a href="http://www.sgi.com/tech/stl/Sequence.html">Sequence</a>s which were populated by <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a> when <code>hierarchy</code> is <code>true</code> (or in some other equivalent manner). On output, these arguments will contain only values relevant to the best model.</p>
+<p>On input, <code>params</code>, <code>sigma2e</code>, <code>gain</code>, and <code>autocor</code> should be <a href="http://www.sgi.com/tech/stl/Sequence.html">Sequence</a>s which were populated by <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a> when <code>hierarchy</code> is <code>true</code> (or in some other equivalent manner). On output, these arguments will contain only values relevant to the best model.</p>
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). For example, the return value of <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). For example, the return value of <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a>. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">params</td><td>Model parameters </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">sigma2e</td><td>\(\sigma^2_\epsilon\) </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">gain</td><td>Model gain </td></tr>
@@ -335,7 +340,7 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The index of the best criterion value within <code>crit</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02025">2025</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02057">2057</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -384,10 +389,10 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 </div><div class="memdoc">
 
 <p>Obtain the best model according to <a class="el" href="structar_1_1criterion.html">criterion</a> applied to \(\sigma^2_\epsilon\) given a hierarchy of candidates. </p>
-<p>On input, <code>params</code>, <code>sigma2e</code>, <code>gain</code>, and <code>autocor</code> should be <a href="http://www.sgi.com/tech/stl/Sequence.html">Sequence</a>s which were populated by <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a> when <code>hierarchy</code> is <code>true</code> (or in some other equivalent manner). On output, these arguments will contain only values relevant to the best model.</p>
+<p>On input, <code>params</code>, <code>sigma2e</code>, <code>gain</code>, and <code>autocor</code> should be <a href="http://www.sgi.com/tech/stl/Sequence.html">Sequence</a>s which were populated by <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a> when <code>hierarchy</code> is <code>true</code> (or in some other equivalent manner). On output, these arguments will contain only values relevant to the best model.</p>
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). For example, the return value of <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). For example, the return value of <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a>. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">params</td><td>Model parameters </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">sigma2e</td><td>\(\sigma^2_\epsilon\) </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">gain</td><td>Model gain </td></tr>
@@ -398,7 +403,145 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 <dl class="section return"><dt>Returns:</dt><dd>The index of the best model within the inputs.</dd></dl>
 <dl class="section see"><dt>See also:</dt><dd>best_model(Integer,Sequence1,Sequence2,Sequence3,Sequence4,OutputIterator) </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02160">2160</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02192">2192</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a670daa7e96d698681f914427999105fd"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class InputIterator , class Value , class OutputIterator1 , class OutputIterator2 , class OutputIterator3 , class OutputIterator4 , class Vector &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ar::burg_method </td>
+          <td>(</td>
+          <td class="paramtype">InputIterator&#160;</td>
+          <td class="paramname"><em>data_first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIterator&#160;</td>
+          <td class="paramname"><em>data_last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Value &amp;&#160;</td>
+          <td class="paramname"><em>mean</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t &amp;&#160;</td>
+          <td class="paramname"><em>maxorder</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OutputIterator1&#160;</td>
+          <td class="paramname"><em>params_first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OutputIterator2&#160;</td>
+          <td class="paramname"><em>sigma2e_first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OutputIterator3&#160;</td>
+          <td class="paramname"><em>gain_first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OutputIterator4&#160;</td>
+          <td class="paramname"><em>autocor_first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>subtract_mean</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>hierarchy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector &amp;&#160;</td>
+          <td class="paramname"><em>Ak</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector &amp;&#160;</td>
+          <td class="paramname"><em>ac</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Algorithms for autoregressive parameter estimation and manipulation. </p>
+<p>Fit an autoregressive model to stationary time series data using Burg's method. That is, find coefficients \(a_i\) such that the sum of the squared errors in the forward predictions \(x_n = -a_1 x_{n-1} - \dots - a_p x_{n-p}\) and backward predictions \(x_n = -a_1 x_{n+1} - \dots - a_p x_{n+p}\) are both minimized. Either a single model of given order or a hierarchy of models up to and including a maximum order may fit.</p>
+<p>The input data \(\vec{x}\) are read from <code>[data_first, data_last)</code> in a single pass. The mean is computed, returned in <code>mean</code>, and <em>removed</em> from further consideration whenever <code>subtract_mean</code> is true. The estimated model parameters \(a_i\) are output using <code>params_first</code> with the behavior determined by the amount of data read, <code>maxorder</code>, and the <code>hierarchy</code> flag: </p>
+<ul>
+<li>
+If <code>hierarchy</code> is <code>false</code>, only the \(a_1, \dots, a_\text{maxorder}\) parameters for an AR(<code>maxorder</code>) process are output. </li>
+<li>
+If <code>hierarchy</code> is <code>true</code>, the <code>maxorder*(maxorder+1)/2</code> parameters \(a_1, \dots, a_m\) for models AR(0), AR(1), AR(2), ..., AR(maxorder) are output. Notice AR(0) has no parameters.  </li>
+</ul>
+<p>Note that the latter case is <em>always</em> computed; The <code>hierarchy</code> flag merely controls what is output. In both cases, the maximum order is limited by the number of data samples provided and is output to <code>maxorder</code>.</p>
+<p>One mean squared discrepancy \(\sigma^2_\epsilon\), also called the innovation variance, and gain \(\sigma^2_x / \sigma^2_\epsilon\) are output for each model, including the trivial zeroth order model when <code>maxorder</code> is zero or <code>hierarchy</code> is <code>true</code>, using <code>sigma2e_first</code> and <code>gain_first</code>. The autocorrelations for lags <code>[0,k]</code> are output using <code>autocor_first</code>. When <code>hierarchy</code> is <code>true</code>, only lags <code>[0,m]</code> should be applied for some AR(<code>m</code>) model. Outputting the lag <code>k</code> autocorrelation is technically redundant as it may be computed from \(a_i\) and lags <code>0, ..., k-1</code>. Autocovariances may be computed by multiplying the autocorrelations by \(\text{gain} \sigma^2_\epsilon\).</p>
+<p>The implementation has been refactored from Cedrick Collomb's 2009 article <a href="http://www.emptyloop.com/technotes/A%20tutorial%20on%20Burg&apos;s%20method,%20algorithm%20and%20recursion.pdf">"Burg’s
+ Method, Algorithm and Recursion"</a>. In particular, iterators are employed, the working precision is selectable using <code>mean</code>, the mean squared discrepancy calculation has been added, some loop index transformations have been performed, working storage may be passed into the method to reduce allocations across many invocations, and all lower order models may be output during the recursion using <code>hierarchy</code>. Gain and autocorrelation calculations have been added based on sections 5.2 and 5.3 of Broersen, P. M. T. Automatic autocorrelation and spectral analysis. Springer, 2006. <a href="http://dx.doi.org/10.1007/1-84628-329-9">http://dx.doi.org/10.1007/1-84628-329-9</a>.</p>
+<dl class="params"><dt>Parameters:</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_first</td><td>Beginning of the input data range. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_last</td><td>Exclusive end of the input data range. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">mean</td><td>Mean of data. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">maxorder</td><td>On input, the maximum model order desired. On output, the maximum model order computed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">params_first</td><td>Model parameters for a single model or for an entire hierarchy of models. At most <code>!hierarchy ? maxorder : maxorder*(maxorder+1)/2</code> values will be output. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">sigma2e_first</td><td>The mean squared discrepancy for only AR(<code>maxorder</code>) or for an entire hierarchy. Either one or at most <code>maxorder + 1</code> values will be output. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gain_first</td><td>The model gain for only AR(<code>maxorder</code>) or an entire hierarchy. Either one or at most <code>maxorder + 1</code> values will be output. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">autocor_first</td><td>Lag one through lag maxorder autocorrelations. At most <code>maxorder + 1</code> values will be output. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">subtract_mean</td><td>Should <code>mean</code> be subtracted from the data? </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hierarchy</td><td>Should the entire hierarchy of estimated models be output? </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>Working storage. Reuse across invocations may speed execution by avoiding allocations. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Working storage similar to <code>f</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Ak</td><td>Working storage similar to <code>f</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ac</td><td>Working storage similar to <code>f</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[data_first, data_last)</code>. </dd></dl>
+
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00381">381</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+
+<p>References <a class="el" href="ar_8hpp_source.html#l00090">welford_nvariance()</a>.</p>
 
 </div>
 </div>
@@ -476,20 +619,16 @@ template&lt;class InputIterator , class Value , class OutputIterator1 , class Ou
       </table>
 </div><div class="memdoc">
 
-<p>Algorithms for autoregressive parameter estimation and manipulation. </p>
-<p>Fit an autoregressive model to stationary time series data using Burg's method. That is, find coefficients \(a_i\) such that the sum of the squared errors in the forward predictions \(x_n = -a_1 x_{n-1} - \dots - a_p x_{n-p}\) and backward predictions \(x_n = -a_1 x_{n+1} - \dots - a_p x_{n+p}\) are both minimized. Either a single model of given order or a hierarchy of models up to and including a maximum order may fit.</p>
-<p>The input data \(\vec{x}\) are read from <code>[data_first, data_last)</code> in a single pass. The mean is computed, returned in <code>mean</code>, and <em>removed</em> from further consideration whenever <code>subtract_mean</code> is true. The estimated model parameters \(a_i\) are output using <code>params_first</code> with the behavior determined by the amount of data read, <code>maxorder</code>, and the <code>hierarchy</code> flag: </p>
+<p>Algorithms for autoregressive parameter estimation and manipulation.  </p>
+<p>Fit an autoregressive model to stationary time series data using Burg's method. That is, find coefficients \(a_i\) such that the sum of the squared errors in the forward predictions \(x_n = -a_1 x_{n-1} - \dots - a_p x_{n-p}\) and backward predictions \(x_n = -a_1 x_{n+1} - \dots - a_p x_{n+p}\) are both minimized. Either a single model of given order or a hierarchy of models up to and including a maximum order may fit.The input data \(\vec{x}\) are read from <code>[data_first, data_last)</code> in a single pass. The mean is computed, returned in <code>mean</code>, and <em>removed</em> from further consideration whenever <code>subtract_mean</code> is true. The estimated model parameters \(a_i\) are output using <code>params_first</code> with the behavior determined by the amount of data read, <code>maxorder</code>, and the <code>hierarchy</code> flag: </p>
 <ul>
 <li>
 If <code>hierarchy</code> is <code>false</code>, only the \(a_1, \dots, a_\text{maxorder}\) parameters for an AR(<code>maxorder</code>) process are output. </li>
 <li>
 If <code>hierarchy</code> is <code>true</code>, the <code>maxorder*(maxorder+1)/2</code> parameters \(a_1, \dots, a_m\) for models AR(0), AR(1), AR(2), ..., AR(maxorder) are output. Notice AR(0) has no parameters.  </li>
 </ul>
-<p>Note that the latter case is <em>always</em> computed; The <code>hierarchy</code> flag merely controls what is output. In both cases, the maximum order is limited by the number of data samples provided and is output to <code>maxorder</code>.</p>
-<p>One mean squared discrepancy \(\sigma^2_\epsilon\), also called the innovation variance, and gain \(\sigma^2_x / \sigma^2_\epsilon\) are output for each model, including the trivial zeroth order model when <code>maxorder</code> is zero or <code>hierarchy</code> is <code>true</code>, using <code>sigma2e_first</code> and <code>gain_first</code>. The autocorrelations for lags <code>[0,k]</code> are output using <code>autocor_first</code>. When <code>hierarchy</code> is <code>true</code>, only lags <code>[0,m]</code> should be applied for some AR(<code>m</code>) model. Outputting the lag <code>k</code> autocorrelation is technically redundant as it may be computed from \(a_i\) and lags <code>0, ..., k-1</code>. Autocovariances may be computed by multiplying the autocorrelations by \(\text{gain} \sigma^2_\epsilon\).</p>
-<p>The implementation has been refactored heavily from Cedrick Collomb's 2009 article <a href="http://www.emptyloop.com/technotes/A%20tutorial%20on%20Burg&apos;s%20method,%20algorithm%20and%20recursion.pdf">"Burg’s
- Method, Algorithm and Recursion"</a>. In particular, iterators are employed, the working precision is selectable using <code>mean</code>, the mean squared discrepancy calculation has been added, some loop index transformations have been performed, and all lower order models may be output during the recursion using <code>hierarchy</code>. Gain and autocorrelation calculations have been added based on sections 5.2 and 5.3 of Broersen, P. M. T. Automatic autocorrelation and spectral analysis. Springer, 2006. <a href="http://dx.doi.org/10.1007/1-84628-329-9">http://dx.doi.org/10.1007/1-84628-329-9</a>.</p>
-<dl class="params"><dt>Parameters:</dt><dd>
+<p>Note that the latter case is <em>always</em> computed; The <code>hierarchy</code> flag merely controls what is output. In both cases, the maximum order is limited by the number of data samples provided and is output to <code>maxorder</code>.One mean squared discrepancy \(\sigma^2_\epsilon\), also called the innovation variance, and gain \(\sigma^2_x / \sigma^2_\epsilon\) are output for each model, including the trivial zeroth order model when <code>maxorder</code> is zero or <code>hierarchy</code> is <code>true</code>, using <code>sigma2e_first</code> and <code>gain_first</code>. The autocorrelations for lags <code>[0,k]</code> are output using <code>autocor_first</code>. When <code>hierarchy</code> is <code>true</code>, only lags <code>[0,m]</code> should be applied for some AR(<code>m</code>) model. Outputting the lag <code>k</code> autocorrelation is technically redundant as it may be computed from \(a_i\) and lags <code>0, ..., k-1</code>. Autocovariances may be computed by multiplying the autocorrelations by \(\text{gain} \sigma^2_\epsilon\).The implementation has been refactored from Cedrick Collomb's 2009 article <a href="http://www.emptyloop.com/technotes/A%20tutorial%20on%20Burg&apos;s%20method,%20algorithm%20and%20recursion.pdf">"Burg’s
+ Method, Algorithm and Recursion"</a>. In particular, iterators are employed, the working precision is selectable using <code>mean</code>, the mean squared discrepancy calculation has been added, some loop index transformations have been performed, working storage may be passed into the method to reduce allocations across many invocations, and all lower order models may be output during the recursion using <code>hierarchy</code>. Gain and autocorrelation calculations have been added based on sections 5.2 and 5.3 of Broersen, P. M. T. Automatic autocorrelation and spectral analysis. Springer, 2006. <a href="http://dx.doi.org/10.1007/1-84628-329-9">http://dx.doi.org/10.1007/1-84628-329-9</a>.<dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data_first</td><td>Beginning of the input data range. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">data_last</td><td>Exclusive end of the input data range. </td></tr>
@@ -500,15 +639,20 @@ If <code>hierarchy</code> is <code>true</code>, the <code>maxorder*(maxorder+1)/
     <tr><td class="paramdir">[out]</td><td class="paramname">gain_first</td><td>The model gain for only AR(<code>maxorder</code>) or an entire hierarchy. Either one or at most <code>maxorder + 1</code> values will be output. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">autocor_first</td><td>Lag one through lag maxorder autocorrelations. At most <code>maxorder + 1</code> values will be output. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">subtract_mean</td><td>Should <code>mean</code> be subtracted from the data? </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">hierarchy</td><td>Should the entire hierarchy of estimated models be output?</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hierarchy</td><td>Should the entire hierarchy of estimated models be output? </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>Working storage. Reuse across invocations may speed execution by avoiding allocations. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Working storage similar to <code>f</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Ak</td><td>Working storage similar to <code>f</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ac</td><td>Working storage similar to <code>f</code>.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[data_first, data_last)</code>. </dd></dl>
+ </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00374">374</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00510">510</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00090">welford_nvariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00381">burg_method()</a>.</p>
 
 </div>
 </div>
@@ -563,7 +707,7 @@ template&lt;class Value &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The decorrelation time \(T_0\) assuming \(\Delta{}t=1\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00849">849</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00883">883</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -625,7 +769,7 @@ template&lt;class Value &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The decorrelation time \(T_0\) assuming \(\Delta{}t=1\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00898">898</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00932">932</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -672,7 +816,7 @@ template&lt;class Criterion , typename Result , typename Integer1 , typename Int
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the evaluated criterion. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01573">1573</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01607">1607</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -725,7 +869,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ordfirst</td><td>The model order corresponding to <code>first</code>. When \(sigma^2_\epsilon\) is produced entirely by <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a>, this should be <code>0u</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ordfirst</td><td>The model order corresponding to <code>first</code>. When \(sigma^2_\epsilon\) is produced entirely by <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a>, this should be <code>0u</code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>Beginning of the range holding \(\sigma^2_\epsilon\) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>Exclusive end of input range. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">crit</td><td>Value assigned to each model by the criterion.</td></tr>
@@ -734,7 +878,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The distance from <code>first</code> to the best model. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01960">1960</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01994">1994</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -780,7 +924,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>Sample count used to compute \(\sigma^2_\epsilon\). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ordfirst</td><td>The model order corresponding to <code>first</code>. When \(sigma^2_\epsilon\) is produced entirely by <a class="el" href="namespacear.html#a430964ca6f3d8fc2b6a00416bf4b3ab5">burg_method</a>, this should be <code>0u</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ordfirst</td><td>The model order corresponding to <code>first</code>. When \(sigma^2_\epsilon\) is produced entirely by <a class="el" href="namespacear.html#a670daa7e96d698681f914427999105fd">burg_method</a>, this should be <code>0u</code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>Beginning of the range holding \(\sigma^2_\epsilon\) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>Exclusive end of input range.</td></tr>
   </table>
@@ -789,7 +933,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 <dl class="section return"><dt>Returns:</dt><dd>The distance from <code>first</code> to the best model.</dd></dl>
 <dl class="section see"><dt>See also:</dt><dd>evaluate_models(Criterion,Integer1,Integer2,InputIterator,OutputIterator) </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02124">2124</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02156">2156</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1234,7 +1378,7 @@ template&lt;class RandomAccessIterator , class InputIterator , class OutputItera
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00961">961</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00995">995</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1292,9 +1436,9 @@ template&lt;class RandomAccessIterator , class ForwardIterator &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01106">1106</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01140">1140</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00961">zohar_linear_solve()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00995">zohar_linear_solve()</a>.</p>
 
 </div>
 </div>
@@ -1345,16 +1489,16 @@ template&lt;class RandomAccessIterator , class ForwardIterator &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01139">1139</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01173">1173</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00961">zohar_linear_solve()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00995">zohar_linear_solve()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 9 2012 13:56:06 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 12 2012 17:08:10 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
