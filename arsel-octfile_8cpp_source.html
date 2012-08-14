@@ -126,184 +126,187 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;DEFUN_DLD(</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    arsel, args, nargout,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="stringliteral">&quot;\tM = arsel (d, submean, absrho, maxorder)\n&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="stringliteral">&quot;\tM = arsel (data, submean, absrho, maxorder)\n&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="stringliteral">&quot;\tAutomatically fit autoregressive models to input signals.\n&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="stringliteral">&quot;\tUse ar::burg_method and ar::best_model&lt;CIC&lt;Burg&lt;MeahHandling&gt; &gt; to\n&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="stringliteral">&quot;\tfit an autoregressive process for signals contained in the rows of d.\n&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="stringliteral">&quot;\tSample means will be subtracted whenever submean is true.  Model\n&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="stringliteral">&quot;\torders zero through min(columns(d), maxorder) will be considered.\n&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="stringliteral">&quot;\tA structure is returned where each field either contains a result\n&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="stringliteral">&quot;\tindexable by the signal number (i.e. the row indices of input matrix\n&quot;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="stringliteral">&quot;\td) or it contains a single scalar applicable to all signals.\n&quot;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="stringliteral">&quot;\tThe number of samples in d (i.e. the number of rows) is returned\n&quot;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="stringliteral">&quot;\tin field &#39;N&#39;.  The filter()-ready process parameters are returned\n&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="stringliteral">&quot;\tin field &#39;A&#39;, the sample mean in &#39;mu&#39;, and the innovation variance\n&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="stringliteral">&quot;\t\\sigma^2_\\epsilon in &#39;sigma2eps&#39;.  The process gains are returned\n&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="stringliteral">&quot;\tin &#39;gain&#39; and the autocorrelation boundary conditions in &#39;autocor&#39;\n&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="stringliteral">&quot;\tfor lags zero through the model order, inclusive.\n&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="stringliteral">&quot;\tGiven the observed autocorrelation structure, a decorrelation time\n&quot;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="stringliteral">&quot;\t&#39;T0&#39; is computed and used to estimate the effective signal variance\n&quot;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="stringliteral">&quot;\t&#39;eff_var&#39;.  The number of effectively independent samples is returned\n&quot;</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="stringliteral">&quot;\tin &#39;eff_N&#39;.  These effective values are combined to estimate the\n&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="stringliteral">&quot;\tsampling error (i.e. the standard deviation of the sample mean)\n&quot;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="stringliteral">&quot;\tas field &#39;mu_sigma&#39;.  The absolute value of the autocorrelation\n&quot;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="stringliteral">&quot;\tfunction will be used in computing the decorrelation times whenever\n&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="stringliteral">&quot;\tabsrho is true.\n&quot;</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="stringliteral">&quot;\tOne may simulate N samples from a fitted process analogously to\n&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="stringliteral">&quot;\tUse ar::burg_method and ar::best_model&lt;CIC&lt;Burg&lt;MeahHandling&gt; &gt;\n&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="stringliteral">&quot;\tto fit an autoregressive process for signals contained in the rows\n&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="stringliteral">&quot;\tof matrix data.  Sample means will be subtracted whenever submean\n&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="stringliteral">&quot;\tis true.  Model orders zero through min(columns(data), maxorder)\n&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="stringliteral">&quot;\twill be considered.  A structure is returned where each field\n&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="stringliteral">&quot;\teither contains a result indexable by the signal number (i.e. the\n&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="stringliteral">&quot;\trow indices of input matrix data) or it contains a single scalar\n&quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="stringliteral">&quot;\tapplicable to all signals.\n&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="stringliteral">&quot;\tThe number of samples in data (i.e. the number of rows) is returned\n&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="stringliteral">&quot;\tin field &#39;N&#39;.  The filter()-ready process parameters are returned\n&quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="stringliteral">&quot;\tin field &#39;AR&#39;, the sample mean in &#39;mu&#39;, and the innovation variance\n&quot;</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="stringliteral">&quot;\t\\sigma^2_\\epsilon in &#39;sigma2eps&#39;.  The process gains are returned\n&quot;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="stringliteral">&quot;\tin &#39;gain&#39; and the autocorrelation boundary conditions in &#39;autocor&#39;\n&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="stringliteral">&quot;\tfor lags zero through the model order, inclusive.  The raw signals\n&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="stringliteral">&quot;\tare made available for later use in &#39;data&#39;.\n&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="stringliteral">&quot;\tGiven the observed autocorrelation structure, a decorrelation time\n&quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="stringliteral">&quot;\t&#39;T0&#39; is computed by ar::decorrelation_time and used to estimate\n&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="stringliteral">&quot;\tthe effective signal variance &#39;eff_var&#39;.  The number of effectively\n&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="stringliteral">&quot;\tindependent samples is returned in &#39;eff_N&#39;.  These effective values\n&quot;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="stringliteral">&quot;\tare combined to estimate the sampling error (i.e. the standard\n&quot;</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="stringliteral">&quot;\tdeviation of the sample mean) as field &#39;mu_sigma&#39;.  The absolute\n&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="stringliteral">&quot;\tvalue of the autocorrelation function will be used in computing the\n&quot;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="stringliteral">&quot;\tdecorrelation times whenever absrho is true.\n&quot;</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="stringliteral">&quot;\t\tx = mu + filter([1], A, sqrt(sigma2eps)*randn(N,1));\n&quot;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="stringliteral">&quot;\tOne may simulate N samples from a fitted process analogously to\n&quot;</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, submean defaults to &quot;</span> STRINGIFY(DEFAULT_SUBMEAN) <span class="stringliteral">&quot;.\n&quot;</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, absrho defaults to &quot;</span> STRINGIFY(DEFAULT_ABSRHO) <span class="stringliteral">&quot;.\n&quot;</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, maxorder defaults to &quot;</span> STRINGIFY(DEFAULT_MAXORDER) <span class="stringliteral">&quot;.\n&quot;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::size_t maxorder = DEFAULT_MAXORDER;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">bool</span>        absrho   = DEFAULT_ABSRHO;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">bool</span>        submean  = DEFAULT_SUBMEAN;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    Matrix      data;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">switch</span> (args.length())</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">case</span> 4: maxorder = args(3).ulong_value();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">case</span> 3: absrho   = args(2).bool_value();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">case</span> 2: submean  = args(1).bool_value();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">case</span> 1: data     = args(0).matrix_value();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">if</span> (!error_state) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            error(<span class="stringliteral">&quot;Invalid call to arsel.  Correct usage is: &quot;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            print_usage();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">return</span> octave_value();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">const</span> octave_idx_type M = data.rows();  <span class="comment">// Number of signals</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">const</span> octave_idx_type N = data.cols();  <span class="comment">// Samples per signal</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">// Prepare per-signal storage locations to return to caller</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    Cell         _A        (dim_vector(M,1));</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    Cell         _autocor  (dim_vector(M,1));</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    ColumnVector _eff_N    (M);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    ColumnVector _eff_var  (M);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    ColumnVector _gain     (M);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    ColumnVector _mu       (M);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ColumnVector _mu_sigma (M);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    ColumnVector _sigma2eps(M);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    ColumnVector _T0       (M);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// Prepare vectors to capture burg_method() output</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    std::vector&lt;double&gt; params, sigma2e, gain, autocor;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    params .reserve(maxorder*(maxorder + 1)/2);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    sigma2e.reserve(maxorder + 1);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    gain   .reserve(maxorder + 1);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    autocor.reserve(maxorder + 1);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// Prepare repeatedly-used working storage for burg_method()</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    std::vector&lt;double&gt; f, b, Ak, ac;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">// Process each signal in turn...</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">for</span> (octave_idx_type i = 0; i &lt; M; ++i)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="comment">// Use burg_method to estimate a hierarchy of AR models from input data</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        params .clear();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        sigma2e.clear();</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        gain   .clear();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        autocor.clear();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classar_1_1strided__adaptor.html" title="An adapter to add striding over another (usually random access) iterator.">ar::strided_adaptor&lt;double*&gt;</a> signal_begin(&amp;data(i,0), M);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="classar_1_1strided__adaptor.html" title="An adapter to add striding over another (usually random access) iterator.">ar::strided_adaptor&lt;double*&gt;</a> signal_end  (&amp;data(i,N), M);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <a class="code" href="namespacear.html#a670daa7e96d698681f914427999105fd" title="Algorithms for autoregressive parameter estimation and manipulation.">ar::burg_method</a>(signal_begin, signal_end, _mu(i), maxorder,</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                        std::back_inserter(params),</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                        std::back_inserter(sigma2e),</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        std::back_inserter(gain),</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        std::back_inserter(autocor),</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                        submean, <span class="comment">/* output hierarchy? */</span> <span class="keyword">true</span>, f, b, Ak, ac);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="comment">// Keep only best model according to CIC accounting for subtract_mean.</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="comment">// TODO Permit specifying the criterion as a function argument.</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">if</span> (submean)</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            ar::best_model&lt;ar::CIC&lt;ar::Burg&lt;ar::mean_subtracted&gt; &gt; &gt;(</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    N, params, sigma2e, gain, autocor);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            ar::best_model&lt;ar::CIC&lt;ar::Burg&lt;ar::mean_retained&gt; &gt; &gt;(</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    N, params, sigma2e, gain, autocor);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="comment">// Compute decorrelation time from the estimated autocorrelation model</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="classar_1_1predictor.html" title="Simulate an autoregressive model process with an InputIterator interface.">ar::predictor&lt;double&gt;</a> p = <a class="code" href="namespacear.html#a7a5016706d3db6d6b5d8c8cf9939dcfb" title="Construct an iterator over the autocorrelation function  given process parameters and initial conditi...">ar::autocorrelation</a>(</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                params.begin(), params.end(), gain[0], autocor.begin());</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        _T0(i) = <a class="code" href="namespacear.html#a384a8192b7c66d6f0d8a06c4c26ef227" title="Compute the decorrelation time for variance of the mean given autocorrelation details.">ar::decorrelation_time</a>(N, p, absrho);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="comment">// Filter()-ready process parameters in field &#39;A&#39; with leading one</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            RowVector t(params.size() + 1);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            t(0) = 1;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            std::copy(params.begin(), params.end(), t.fortran_vec() + 1);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            _A(i) = t;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="comment">// Field &#39;sigma2eps&#39;</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        _sigma2eps(i) = sigma2e[0];</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="comment">// Field &#39;gain&#39;</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        _gain(i) = gain[0];</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="comment">// Field &#39;autocor&#39;</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            RowVector t(autocor.size());</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            std::copy(autocor.begin(), autocor.end(), t.fortran_vec());</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            _autocor(i) = t;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="comment">// Field &#39;eff_var&#39;</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="comment">// Unbiased effective variance expression from [Trenberth1984]</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        _eff_var(i) = (N*gain[0]*sigma2e[0]) / (N - _T0(i));</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="comment">// Field &#39;eff_N&#39;</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        _eff_N(i) = N / _T0(i);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="comment">// Field &#39;mu_sigma&#39;</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="comment">// Variance of the sample mean using effective quantities</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        _mu_sigma(i) = std::sqrt(_eff_var(i) / _eff_N(i));</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// Permit user to interrupt the computations at this time</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        OCTAVE_QUIT;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    }</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">// Provide no results whenever an error was detected</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> (error_state)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        warning(<span class="stringliteral">&quot;arsel: error detected; no results returned&quot;</span>);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">return</span> octave_value_list();</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="comment">// Build map containing return fields</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    Octave_map retval;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    retval.assign(<span class="stringliteral">&quot;A&quot;</span>,         octave_value(_A));</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    retval.assign(<span class="stringliteral">&quot;absrho&quot;</span>,    octave_value(absrho));</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    retval.assign(<span class="stringliteral">&quot;autocor&quot;</span>,   octave_value(_autocor));</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    retval.assign(<span class="stringliteral">&quot;eff_N&quot;</span>,     _eff_N);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    retval.assign(<span class="stringliteral">&quot;eff_var&quot;</span>,   _eff_var);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    retval.assign(<span class="stringliteral">&quot;gain&quot;</span>,      _gain);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    retval.assign(<span class="stringliteral">&quot;maxorder&quot;</span>,  octave_value(maxorder));</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    retval.assign(<span class="stringliteral">&quot;mu&quot;</span>,        _mu);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    retval.assign(<span class="stringliteral">&quot;mu_sigma&quot;</span>,  _mu_sigma);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    retval.assign(<span class="stringliteral">&quot;N&quot;</span>,         octave_value(N));</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    retval.assign(<span class="stringliteral">&quot;sigma2eps&quot;</span>, _sigma2eps);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    retval.assign(<span class="stringliteral">&quot;submean&quot;</span>,   octave_value(submean));</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    retval.assign(<span class="stringliteral">&quot;T0&quot;</span>,        _T0);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">return</span> octave_value_list(retval);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="stringliteral">&quot;\t\tx = mu + filter([1], AR, sqrt(sigma2eps)*randn(N,1));\n&quot;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="stringliteral">&quot;\t\n&quot;</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, submean defaults to &quot;</span> STRINGIFY(DEFAULT_SUBMEAN) <span class="stringliteral">&quot;.\n&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, absrho defaults to &quot;</span> STRINGIFY(DEFAULT_ABSRHO) <span class="stringliteral">&quot;.\n&quot;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="stringliteral">&quot;\tWhen omitted, maxorder defaults to &quot;</span> STRINGIFY(DEFAULT_MAXORDER) <span class="stringliteral">&quot;.\n&quot;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::size_t maxorder = DEFAULT_MAXORDER;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">bool</span>        absrho   = DEFAULT_ABSRHO;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">bool</span>        submean  = DEFAULT_SUBMEAN;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    Matrix      data;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">switch</span> (args.length())</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">case</span> 4: maxorder = args(3).ulong_value();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">case</span> 3: absrho   = args(2).bool_value();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">case</span> 2: submean  = args(1).bool_value();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">case</span> 1: data     = args(0).matrix_value();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">if</span> (!error_state) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            error(<span class="stringliteral">&quot;Invalid call to arsel.  Correct usage is: &quot;</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            print_usage();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordflow">return</span> octave_value();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">const</span> octave_idx_type M = data.rows();  <span class="comment">// Number of signals</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">const</span> octave_idx_type N = data.cols();  <span class="comment">// Samples per signal</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// Prepare per-signal storage locations to return to caller</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    Cell         _AR       (dim_vector(M,1));</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Cell         _autocor  (dim_vector(M,1));</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    ColumnVector _eff_N    (M);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    ColumnVector _eff_var  (M);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ColumnVector _gain     (M);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    ColumnVector _mu       (M);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    ColumnVector _mu_sigma (M);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    ColumnVector _sigma2eps(M);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    ColumnVector _T0       (M);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// Prepare vectors to capture burg_method() output</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    std::vector&lt;double&gt; params, sigma2e, gain, autocor;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    params .reserve(maxorder*(maxorder + 1)/2);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    sigma2e.reserve(maxorder + 1);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    gain   .reserve(maxorder + 1);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    autocor.reserve(maxorder + 1);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">// Prepare repeatedly-used working storage for burg_method()</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    std::vector&lt;double&gt; f, b, Ak, ac;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">// Process each signal in turn...</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">for</span> (octave_idx_type i = 0; i &lt; M; ++i)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// Use burg_method to estimate a hierarchy of AR models from input data</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        params .clear();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        sigma2e.clear();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        gain   .clear();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        autocor.clear();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <a class="code" href="classar_1_1strided__adaptor.html" title="An adapter to add striding over another (usually random access) iterator.">ar::strided_adaptor&lt;const double*&gt;</a> signal_begin(&amp;data(i,0), M);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="classar_1_1strided__adaptor.html" title="An adapter to add striding over another (usually random access) iterator.">ar::strided_adaptor&lt;const double*&gt;</a> signal_end  (&amp;data(i,N), M);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="namespacear.html#a670daa7e96d698681f914427999105fd" title="Algorithms for autoregressive parameter estimation and manipulation.">ar::burg_method</a>(signal_begin, signal_end, _mu(i), maxorder,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        std::back_inserter(params),</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        std::back_inserter(sigma2e),</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                        std::back_inserter(gain),</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                        std::back_inserter(autocor),</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                        submean, <span class="comment">/* output hierarchy? */</span> <span class="keyword">true</span>, f, b, Ak, ac);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">// Keep only best model according to CIC accounting for subtract_mean.</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="comment">// TODO Permit specifying the criterion as a function argument.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">if</span> (submean)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            ar::best_model&lt;ar::CIC&lt;ar::Burg&lt;ar::mean_subtracted&gt; &gt; &gt;(</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    N, params, sigma2e, gain, autocor);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            ar::best_model&lt;ar::CIC&lt;ar::Burg&lt;ar::mean_retained&gt; &gt; &gt;(</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    N, params, sigma2e, gain, autocor);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="comment">// Compute decorrelation time from the estimated autocorrelation model</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="classar_1_1predictor.html" title="Simulate an autoregressive model process with an InputIterator interface.">ar::predictor&lt;double&gt;</a> p = <a class="code" href="namespacear.html#a7a5016706d3db6d6b5d8c8cf9939dcfb" title="Construct an iterator over the autocorrelation function  given process parameters and initial conditi...">ar::autocorrelation</a>(</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                params.begin(), params.end(), gain[0], autocor.begin());</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        _T0(i) = <a class="code" href="namespacear.html#a384a8192b7c66d6f0d8a06c4c26ef227" title="Compute the decorrelation time for variance of the mean given autocorrelation details.">ar::decorrelation_time</a>(N, p, absrho);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment">// Filter()-ready process parameters in field &#39;AR&#39; with leading one</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            RowVector t(params.size() + 1);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            t(0) = 1;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            std::copy(params.begin(), params.end(), t.fortran_vec() + 1);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            _AR(i) = t;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="comment">// Field &#39;sigma2eps&#39;</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        _sigma2eps(i) = sigma2e[0];</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="comment">// Field &#39;gain&#39;</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        _gain(i) = gain[0];</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="comment">// Field &#39;autocor&#39;</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            RowVector t(autocor.size());</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            std::copy(autocor.begin(), autocor.end(), t.fortran_vec());</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            _autocor(i) = t;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">// Field &#39;eff_var&#39;</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// Unbiased effective variance expression from [Trenberth1984]</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        _eff_var(i) = (N*gain[0]*sigma2e[0]) / (N - _T0(i));</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="comment">// Field &#39;eff_N&#39;</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        _eff_N(i) = N / _T0(i);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="comment">// Field &#39;mu_sigma&#39;</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// Variance of the sample mean using effective quantities</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        _mu_sigma(i) = std::sqrt(_eff_var(i) / _eff_N(i));</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="comment">// Permit user to interrupt the computations at this time</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        OCTAVE_QUIT;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="comment">// Provide no results whenever an error was detected</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">if</span> (error_state)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        warning(<span class="stringliteral">&quot;arsel: error detected; no results returned&quot;</span>);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">return</span> octave_value_list();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">// Build map containing return fields</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    Octave_map retval;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    retval.assign(<span class="stringliteral">&quot;AR&quot;</span>,        octave_value(_AR));</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    retval.assign(<span class="stringliteral">&quot;absrho&quot;</span>,    octave_value(absrho));</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    retval.assign(<span class="stringliteral">&quot;autocor&quot;</span>,   octave_value(_autocor));</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    retval.assign(<span class="stringliteral">&quot;data&quot;</span>,      data);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    retval.assign(<span class="stringliteral">&quot;eff_N&quot;</span>,     _eff_N);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    retval.assign(<span class="stringliteral">&quot;eff_var&quot;</span>,   _eff_var);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    retval.assign(<span class="stringliteral">&quot;gain&quot;</span>,      _gain);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    retval.assign(<span class="stringliteral">&quot;maxorder&quot;</span>,  octave_value(maxorder));</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    retval.assign(<span class="stringliteral">&quot;mu&quot;</span>,        _mu);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    retval.assign(<span class="stringliteral">&quot;mu_sigma&quot;</span>,  _mu_sigma);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    retval.assign(<span class="stringliteral">&quot;N&quot;</span>,         octave_value(N));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    retval.assign(<span class="stringliteral">&quot;sigma2eps&quot;</span>, _sigma2eps);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    retval.assign(<span class="stringliteral">&quot;submean&quot;</span>,   octave_value(submean));</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    retval.assign(<span class="stringliteral">&quot;T0&quot;</span>,        _T0);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">return</span> octave_value_list(retval);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 12 2012 17:08:10 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 14 2012 13:08:35 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

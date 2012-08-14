@@ -230,13 +230,13 @@ template&lt;class RandomAccessIterator &gt; </div>
 <p>Presumably <a class="el" href="classar_1_1predictor.html#abbde7e0603a735ebece7270603a670cb">initial_conditions</a> will be used to specify some initial state as otherwise the process is identically zero. The process order \(p\) is set by <code>std::distance(params_first, params_last)</code>.</p>
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
-    <tr><td class="paramname">params_first</td><td>Beginning of the process parameter range. </td></tr>
+    <tr><td class="paramname">params_first</td><td>Beginning of the process parameter range starting with \(a_1\). </td></tr>
     <tr><td class="paramname">params_last</td><td>End of the process parameter range. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00616">616</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00617">617</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -286,14 +286,14 @@ template&lt;class RandomAccessIterator , class NoiseGenerator &gt; </div>
 <p>The process order \(p\) is set by <code>std::distance(params_first,params_last)</code>. The class <code>std::tr1::variate_generator</code> may be helpful in constructing normally distributed input.</p>
 <dl class="params"><dt>Parameters:</dt><dd>
   <table class="params">
-    <tr><td class="paramname">params_first</td><td>Beginning of the process parameter range. </td></tr>
+    <tr><td class="paramname">params_first</td><td>Beginning of the process parameter range starting with \(a_1\). </td></tr>
     <tr><td class="paramname">params_last</td><td>End of the process parameter range. </td></tr>
     <tr><td class="paramname">generator</td><td>A nullary callback for generating \(\epsilon_n\). For example, a random number generator distributed like \(N\left(0, \sigma^2_\epsilon\right)\). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00645">645</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00647">647</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +344,7 @@ template&lt;class InputIterator &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00711">711</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00713">713</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +374,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 
 <p>Check if two iterators represent different simulation times. </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00797">797</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00799">799</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +403,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 
 <p>Obtain the process prediction \(x_n\). </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00783">783</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00785">785</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -432,7 +432,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 
 <p>Prefix increment. </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00734">734</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00736">736</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +462,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 
 <p>Postfix increment. </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00775">775</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00777">777</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -492,7 +492,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 
 <p>Check if two iterators represent the same simulation time. </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00791">791</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00793">793</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -502,7 +502,7 @@ template&lt;typename Value, typename Index = std::size_t&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 12 2012 17:08:10 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 14 2012 13:08:35 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
