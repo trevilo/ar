@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,86 +95,123 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// file, You can obtain one at http://mozilla.org/MPL/2.0/.</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ar_8hpp.html" title="Autoregressive process modeling tools in header-only C++.">ar.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;cstdio&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;iterator&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;limits&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">using namespace </span>ar;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Process a possible --subtract-mean flag, shifting arguments if needed</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">bool</span> subtract_mean = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span> (argc &gt; 1 &amp;&amp; 0 == strcmp(<span class="stringliteral">&quot;--subtract-mean&quot;</span>, argv[1])) {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        subtract_mean = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        argv[1] = argv[0];</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        ++argv;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        --argc;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Use burg_method to estimate a hierarchy of AR models from input data</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">double</span> mean;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">size_t</span> order = 512;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    vector&lt;double&gt; params, sigma2e, gain, autocor;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    params .reserve(order*(order + 1)/2);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    sigma2e.reserve(order + 1);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    gain   .reserve(order + 1);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    autocor.reserve(order + 1);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">size_t</span> N = <a class="code" href="namespacear.html#a670daa7e96d698681f914427999105fd" title="Algorithms for autoregressive parameter estimation and manipulation.">burg_method</a>(istream_iterator&lt;double&gt;(cin),</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                 istream_iterator&lt;double&gt;(),</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                 mean,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                 order,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                 back_inserter(params),</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                 back_inserter(sigma2e),</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                 back_inserter(gain),</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                 back_inserter(autocor),</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                 subtract_mean,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                 <span class="comment">/* output hierarchy? */</span> <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Keep only best model according to CIC accounting for subtract_mean.</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (subtract_mean) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        best_model&lt;CIC&lt;Burg&lt;mean_subtracted&gt; &gt; &gt;(</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                N, params, sigma2e, gain, autocor);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        best_model&lt;CIC&lt;Burg&lt;mean_retained&gt; &gt; &gt;(</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                N, params, sigma2e, gain, autocor);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Compute decorrelation time from the estimated autocorrelation model</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> T0  = <a class="code" href="namespacear.html#a384a8192b7c66d6f0d8a06c4c26ef227" title="Compute the decorrelation time for variance of the mean given autocorrelation details.">decorrelation_time</a>(N, <a class="code" href="namespacear.html#a7a5016706d3db6d6b5d8c8cf9939dcfb" title="Construct an iterator over the autocorrelation function  given process parameters and initial conditi...">autocorrelation</a>(params.begin(),</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                params.end(), gain[0], autocor.begin()), <span class="comment">/* abs(rho) */</span> <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Output details about the best model and derived information</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Unbiased effective variance expression from [Trenberth1984]</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    cout.precision(numeric_limits&lt;double&gt;::digits10 + 2);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    cout &lt;&lt; showpos</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;         &lt;&lt;   <span class="stringliteral">&quot;# N                   &quot;</span>   &lt;&lt; N</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# AR(p)               &quot;</span>   &lt;&lt; params.size()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Mean                &quot;</span>   &lt;&lt; mean</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_\\epsilon   &quot;</span> &lt;&lt; sigma2e[0]</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Variance_effective  &quot;</span>   &lt;&lt; (N*gain[0]*sigma2e[0]) / (N - T0)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# N_effective         &quot;</span>   &lt;&lt; N / T0</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# t_decorrelation     &quot;</span>   &lt;&lt; T0</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;         &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    copy(params.begin(), params.end(), ostream_iterator&lt;double&gt;(cout,<span class="stringliteral">&quot;\n&quot;</span>));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    cout.flush();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;optionparser.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Command line argument declarations for optionparser.h usage</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">enum</span> OptionIndex { UNKNOWN, HELP, SUBMEAN, SIGNRHO };</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">const</span> option::Descriptor usage[] = {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {UNKNOWN, 0, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>,      option::Arg::None,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;     <span class="stringliteral">&quot;Usage: arsel [OPTION]...\n&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;     <span class="stringliteral">&quot;Fit an optimal autoregressive model to data from standard input.\n&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;     <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;     <span class="stringliteral">&quot;Options:&quot;</span> },</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {0,0,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,option::Arg::None,0}, <span class="comment">// table break</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {SUBMEAN, 0,  <span class="stringliteral">&quot;&quot;</span>,  <span class="stringliteral">&quot;subtract-mean&quot;</span>, option::Arg::None,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;     <span class="stringliteral">&quot;\t--subtract-mean  \tSubtract the sample mean from the incoming data&quot;</span> },</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {SIGNRHO, 0,  <span class="stringliteral">&quot;&quot;</span>,  <span class="stringliteral">&quot;signed-rho&quot;</span>,    option::Arg::None,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;     <span class="stringliteral">&quot;\t--signed-rho     \tUse signed autocorrelation value when computing T0&quot;</span> },</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {HELP,    0,  <span class="stringliteral">&quot;h&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>,        option::Arg::None,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;     <span class="stringliteral">&quot;  -h \t--help        \tDisplay this help message and immediately exit&quot;</span> },</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {0,0,0,0,0,0}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">using namespace </span>ar;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">using</span> option::Option;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// TODO Add processing of files specified on the command line</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Process any incoming command line arguments using optionparser.h</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    argc-=(argc&gt;0); argv+=(argc&gt;0); <span class="comment">// Skip program name argv[0] if present</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    option::Stats stats(usage, argc, argv);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">struct </span>Guard { <span class="comment">// scoped_array or unique_ptr would simply RAII here</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Option *options, *buffer;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        Guard(Option *options, Option *buffer)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            : options(options), buffer(buffer) {}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        ~Guard() { <span class="keyword">delete</span>[] options; <span class="keyword">delete</span>[] buffer; }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    } guard(<span class="keyword">new</span> Option[stats.options_max], <span class="keyword">new</span> Option[stats.buffer_max ]);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    option::Parser parse(usage, argc, argv, guard.options, guard.buffer);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (parse.error() || guard.options[UNKNOWN]) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">for</span> (Option* o = guard.options[UNKNOWN]; o; o = o-&gt;next()) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            cerr &lt;&lt; <span class="stringliteral">&quot;Unknown option: &quot;</span> &lt;&lt; o-&gt;name &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (guard.options[HELP]) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        option::printUsage(std::cout, usage);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> subtract_mean = guard.options[SUBMEAN] ? <span class="keyword">true</span> : <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> absolute_rho  = guard.options[SIGNRHO] ? <span class="keyword">false</span> : <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Use burg_method to estimate a hierarchy of AR models from input data</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">double</span> mean;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">size_t</span> order = 512;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    vector&lt;double&gt; params, sigma2e, gain, autocor;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    params .reserve(order*(order + 1)/2);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    sigma2e.reserve(order + 1);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    gain   .reserve(order + 1);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    autocor.reserve(order + 1);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">size_t</span> N = <a class="code" href="namespacear.html#a670daa7e96d698681f914427999105fd" title="Algorithms for autoregressive parameter estimation and manipulation.">burg_method</a>(istream_iterator&lt;double&gt;(cin),</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                 istream_iterator&lt;double&gt;(),</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                 mean,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                 order,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                 back_inserter(params),</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                 back_inserter(sigma2e),</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                 back_inserter(gain),</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                 back_inserter(autocor),</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                 subtract_mean,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                 <span class="comment">/* output hierarchy? */</span> <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Keep only best model according to CIC accounting for subtract_mean.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span> (subtract_mean) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        best_model&lt;CIC&lt;Burg&lt;mean_subtracted&gt; &gt; &gt;(</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                N, params, sigma2e, gain, autocor);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        best_model&lt;CIC&lt;Burg&lt;mean_retained&gt; &gt; &gt;(</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                N, params, sigma2e, gain, autocor);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Compute decorrelation time from the estimated autocorrelation model</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> T0  = <a class="code" href="namespacear.html#a384a8192b7c66d6f0d8a06c4c26ef227" title="Compute the decorrelation time for variance of the mean given autocorrelation details.">decorrelation_time</a>(N, <a class="code" href="namespacear.html#a7a5016706d3db6d6b5d8c8cf9939dcfb" title="Construct an iterator over the autocorrelation function  given process parameters and initial conditi...">autocorrelation</a>(params.begin(),</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                params.end(), gain[0], autocor.begin()), absolute_rho);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// Output details about the best model and derived information</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// Unbiased effective variance expression from [Trenberth1984]</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    cout.precision(numeric_limits&lt;double&gt;::digits10 + 2);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    cout &lt;&lt; showpos</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;         &lt;&lt;   <span class="stringliteral">&quot;# N                   &quot;</span>   &lt;&lt; N</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# AR(p)               &quot;</span>   &lt;&lt; params.size()</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Mean                &quot;</span>   &lt;&lt; mean</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# \\sigma^2_\\epsilon   &quot;</span> &lt;&lt; sigma2e[0]</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# Variance_effective  &quot;</span>   &lt;&lt; (N*gain[0]*sigma2e[0]) / (N - T0)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# N_effective         &quot;</span>   &lt;&lt; N / T0</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;\n# t_decorrelation     &quot;</span>   &lt;&lt; T0</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;         &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    copy(params.begin(), params.end(), ostream_iterator&lt;double&gt;(cout,<span class="stringliteral">&quot;\n&quot;</span>));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    cout.flush();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 28 2012 23:12:23 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 3 2012 07:22:42 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

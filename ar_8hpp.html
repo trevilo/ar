@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,6 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;limits&gt;</code><br/>
 <code>#include &lt;numeric&gt;</code><br/>
 <code>#include &lt;stdexcept&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
 </div>
 <p><a href="ar_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -152,6 +153,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper to compute \(\frac{1+v}{1-v}\) for the method in use. <br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1CIC.html">ar::CIC&lt; EstimationMethod &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the combined information criterion (<a class="el" href="structar_1_1CIC.html" title="Represents the combined information criterion (CIC) as applied to a particular estimation_method.">CIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1CIC.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1best__model__function.html">ar::best_model_function&lt; EstimationMethod, Integer, Sequence1, Sequence2, Sequence3, Sequence4 &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template typedef and helper method returning a <a class="el" href="namespacear.html#a6bcae9029a2aaa1d8db3ab41836cf6f1">best_model</a> implementation matching a model selection criterion provided at runtime.  <a href="structar_1_1best__model__function.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classar_1_1strided__adaptor.html">ar::strided_adaptor&lt; Iterator &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An adapter to add striding over another (usually random access) iterator.  <a href="classar_1_1strided__adaptor.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
@@ -238,7 +241,7 @@ std::iterator_traits<br class="typebreak"/>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 28 2012 23:12:23 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 3 2012 07:22:42 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

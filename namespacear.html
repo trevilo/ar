@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -139,6 +139,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the finite sample information criterion (<a class="el" href="structar_1_1FSIC.html" title="Represents the finite sample information criterion (FSIC) as applied to a particular estimation_metho...">FSIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1FSIC.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1CIC.html">CIC</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the combined information criterion (<a class="el" href="structar_1_1CIC.html" title="Represents the combined information criterion (CIC) as applied to a particular estimation_method.">CIC</a>) as applied to a particular <a class="el" href="structar_1_1estimation__method.html">estimation_method</a>.  <a href="structar_1_1CIC.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structar_1_1best__model__function.html">best_model_function</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template typedef and helper method returning a <a class="el" href="namespacear.html#a6bcae9029a2aaa1d8db3ab41836cf6f1">best_model</a> implementation matching a model selection criterion provided at runtime.  <a href="structar_1_1best__model__function.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classar_1_1strided__adaptor.html">strided_adaptor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An adapter to add striding over another (usually random access) iterator.  <a href="classar_1_1strided__adaptor.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
@@ -271,7 +273,7 @@ template&lt;class RandomAccessIterator , class InputIterator , class Value &gt; 
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>An InputIterator across the autocorrelation function starting with \(rho_0\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00847">847</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00848">848</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +342,7 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The index of the best criterion value within <code>crit</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02059">2059</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02060">2060</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +405,7 @@ template&lt;class Criterion , typename Integer , class Sequence1 , class Sequenc
 <dl class="section return"><dt>Returns:</dt><dd>The index of the best model within the inputs.</dd></dl>
 <dl class="section see"><dt>See also:</dt><dd>best_model(Integer,Sequence1,Sequence2,Sequence3,Sequence4,OutputIterator) </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02194">2194</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02195">2195</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -539,9 +541,9 @@ If <code>hierarchy</code> is <code>true</code>, the <code>maxorder*(maxorder+1)/
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[data_first, data_last)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00381">381</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00382">382</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00090">welford_nvariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00091">welford_nvariance()</a>.</p>
 
 </div>
 </div>
@@ -650,9 +652,9 @@ If <code>hierarchy</code> is <code>true</code>, the <code>maxorder*(maxorder+1)/
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[data_first, data_last)</code>. </dd></dl>
  </p>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00510">510</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00511">511</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00381">burg_method()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00382">burg_method()</a>.</p>
 
 </div>
 </div>
@@ -707,7 +709,7 @@ template&lt;class Value &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The decorrelation time \(T_0\) assuming \(\Delta{}t=1\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00885">885</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00886">886</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -769,7 +771,7 @@ template&lt;class Value &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The decorrelation time \(T_0\) assuming \(\Delta{}t=1\). </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00934">934</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00935">935</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +818,7 @@ template&lt;class Criterion , typename Result , typename Integer1 , typename Int
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the evaluated criterion. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01609">1609</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01610">1610</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -878,7 +880,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>The distance from <code>first</code> to the best model. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01996">1996</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01997">1997</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -933,7 +935,7 @@ template&lt;class Criterion , typename Integer1 , typename Integer2 , class Inpu
 <dl class="section return"><dt>Returns:</dt><dd>The distance from <code>first</code> to the best model.</dd></dl>
 <dl class="section see"><dt>See also:</dt><dd>evaluate_models(Criterion,Integer1,Integer2,InputIterator,OutputIterator) </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02158">2158</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l02159">2159</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1001,9 +1003,9 @@ template&lt;typename InputIterator1 , typename InputIterator2 , typename OutputT
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[first1, last2)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00234">234</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00235">235</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00180">welford_ncovariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00181">welford_ncovariance()</a>.</p>
 
 </div>
 </div>
@@ -1071,9 +1073,9 @@ template&lt;typename InputIterator1 , typename InputIterator2 , typename OutputT
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[first1, last2)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00264">264</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00265">265</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00180">welford_ncovariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00181">welford_ncovariance()</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1144,7 @@ template&lt;typename InputIterator1 , typename InputIterator2 , typename OutputT
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[first1, last2)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00180">180</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00181">181</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1197,7 +1199,7 @@ template&lt;typename InputIterator , typename OutputType1 , typename OutputType2
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>the number data values processed within <code>[first, last)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00090">90</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00091">91</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1251,9 +1253,9 @@ template&lt;typename InputIterator , typename OutputType1 , typename OutputType2
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>N, the number data values processed within <code>[first, last)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00128">128</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00129">129</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00090">welford_nvariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00091">welford_nvariance()</a>.</p>
 
 </div>
 </div>
@@ -1307,9 +1309,9 @@ template&lt;typename InputIterator , typename OutputType1 , typename OutputType2
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>N, the number data values processed within <code>[first, last)</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00151">151</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00152">152</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00090">welford_nvariance()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00091">welford_nvariance()</a>.</p>
 
 </div>
 </div>
@@ -1378,7 +1380,7 @@ template&lt;class RandomAccessIterator , class InputIterator , class OutputItera
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00997">997</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l00998">998</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
 </div>
 </div>
@@ -1436,9 +1438,9 @@ template&lt;class RandomAccessIterator , class ForwardIterator &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01142">1142</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01143">1143</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00997">zohar_linear_solve()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00998">zohar_linear_solve()</a>.</p>
 
 </div>
 </div>
@@ -1489,16 +1491,16 @@ template&lt;class RandomAccessIterator , class ForwardIterator &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01175">1175</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="ar_8hpp_source.html#l01176">1176</a> of file <a class="el" href="ar_8hpp_source.html">ar.hpp</a>.</p>
 
-<p>References <a class="el" href="ar_8hpp_source.html#l00997">zohar_linear_solve()</a>.</p>
+<p>References <a class="el" href="ar_8hpp_source.html#l00998">zohar_linear_solve()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 28 2012 23:12:23 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 3 2012 07:22:42 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
