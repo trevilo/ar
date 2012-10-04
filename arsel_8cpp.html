@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -112,12 +113,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <p><a href="arsel_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structArg.html">Arg</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aebb391f83c0942d90b83aefff143d1f0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>OptionIndex</b> { <b>UNKNOWN</b>, 
+<tr class="memitem:aebb391f83c0942d90b83aefff143d1f0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>OptionIndex</b> { <br/>
+&#160;&#160;<b>UNKNOWN</b>, 
+<b>CRITERION</b>, 
 <b>HELP</b>, 
 <b>SUBMEAN</b>, 
+<br/>
+&#160;&#160;<b>ORDER</b>, 
 <b>SIGNRHO</b>
+<br/>
  }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
@@ -150,24 +160,28 @@ Variables</h2></td></tr>
 <div class="line">     <span class="stringliteral">&quot;Fit an optimal autoregressive model to data from standard input.\n&quot;</span></div>
 <div class="line">     <span class="stringliteral">&quot;\n&quot;</span></div>
 <div class="line">     <span class="stringliteral">&quot;Options:&quot;</span> },</div>
-<div class="line">    {0,0,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,option::Arg::None,0}, </div>
-<div class="line">    {SUBMEAN, 0,  <span class="stringliteral">&quot;&quot;</span>,  <span class="stringliteral">&quot;subtract-mean&quot;</span>, option::Arg::None,</div>
-<div class="line">     <span class="stringliteral">&quot;\t--subtract-mean  \tSubtract the sample mean from the incoming data&quot;</span> },</div>
-<div class="line">    {SIGNRHO, 0,  <span class="stringliteral">&quot;&quot;</span>,  <span class="stringliteral">&quot;signed-rho&quot;</span>,    option::Arg::None,</div>
-<div class="line">     <span class="stringliteral">&quot;\t--signed-rho     \tUse signed autocorrelation value when computing T0&quot;</span> },</div>
-<div class="line">    {HELP,    0,  <span class="stringliteral">&quot;h&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>,        option::Arg::None,</div>
+<div class="line">    {0,0,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,Arg::None,0}, </div>
+<div class="line">    {CRITERION, 0,  <span class="stringliteral">&quot;c&quot;</span>,  <span class="stringliteral">&quot;criterion&quot;</span>,     Arg::NonEmpty,</div>
+<div class="line">     <span class="stringliteral">&quot;  -c \t--criterion=ABBREV  \tUse the specified model order selection criterion&quot;</span> },</div>
+<div class="line">    {HELP,      0,  <span class="stringliteral">&quot;h&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>,           Arg::None,</div>
 <div class="line">     <span class="stringliteral">&quot;  -h \t--help        \tDisplay this help message and immediately exit&quot;</span> },</div>
+<div class="line">    {SUBMEAN,   0,  <span class="stringliteral">&quot;m&quot;</span>,  <span class="stringliteral">&quot;subtract-mean&quot;</span>, Arg::None,</div>
+<div class="line">     <span class="stringliteral">&quot;  -m \t--subtract-mean  \tSubtract the sample mean from the incoming data&quot;</span> },</div>
+<div class="line">    {ORDER,     0,  <span class="stringliteral">&quot;o&quot;</span>,  <span class="stringliteral">&quot;order&quot;</span>,         Arg::NonNegative,</div>
+<div class="line">     <span class="stringliteral">&quot;  -o \t--order=MAXIMUM  \tConsider models no higher than the given order&quot;</span> },</div>
+<div class="line">    {SIGNRHO,   0,  <span class="stringliteral">&quot;r&quot;</span>,  <span class="stringliteral">&quot;signed-rho&quot;</span>,    Arg::None,</div>
+<div class="line">     <span class="stringliteral">&quot;  -r \t--signed-rho     \tUse signed autocorrelation values when computing T0&quot;</span> },</div>
 <div class="line">    {0,0,0,0,0,0}</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="arsel_8cpp_source.html#l00031">31</a> of file <a class="el" href="arsel_8cpp_source.html">arsel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="arsel_8cpp_source.html#l00038">38</a> of file <a class="el" href="arsel_8cpp_source.html">arsel.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 3 2012 07:22:42 for ar by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 4 2012 00:50:37 for ar by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>
