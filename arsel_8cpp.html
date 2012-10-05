@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ar: arsel.cpp File Reference</title>
+<title>github.com/RhysU/ar: arsel.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +25,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ar</div>
+   <div id="projectname">github.com/RhysU/ar</div>
+   <div id="projectbrief">Autoregressive process modeling tools in header-only C++</div>
   </td>
  </tr>
  </tbody>
@@ -102,8 +103,8 @@ Enumerations</h2></td></tr>
 <b>HELP</b>, 
 <b>SUBMEAN</b>, 
 <br/>
-&#160;&#160;<b>ORDER</b>, 
-<b>SIGNRHO</b>
+&#160;&#160;<b>MAXORDER</b>, 
+<b>ABSRHO</b>
 <br/>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
@@ -137,16 +138,16 @@ Variables</h2></td></tr>
      <span class="stringliteral">&quot;\n&quot;</span>
      <span class="stringliteral">&quot;Options:&quot;</span> },
     {0,0,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,Arg::None,0}, 
+    {ABSRHO,    0,  <span class="stringliteral">&quot;a&quot;</span>,  <span class="stringliteral">&quot;absolute-rho&quot;</span>,   Arg::None,
+     <span class="stringliteral">&quot;  -a \t--absolute-rho   \tUse absolute autocorrelation when computing T0&quot;</span> },
     {CRITERION, 0,  <span class="stringliteral">&quot;c&quot;</span>,  <span class="stringliteral">&quot;criterion&quot;</span>,     Arg::NonEmpty,
      <span class="stringliteral">&quot;  -c \t--criterion=ABBREV  \tUse the specified model order selection criterion&quot;</span> },
     {HELP,      0,  <span class="stringliteral">&quot;h&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>,           Arg::None,
-     <span class="stringliteral">&quot;  -h \t--help        \tDisplay this help message and immediately exit&quot;</span> },
-    {SUBMEAN,   0,  <span class="stringliteral">&quot;m&quot;</span>,  <span class="stringliteral">&quot;subtract-mean&quot;</span>, Arg::None,
-     <span class="stringliteral">&quot;  -m \t--subtract-mean  \tSubtract the sample mean from the incoming data&quot;</span> },
-    {ORDER,     0,  <span class="stringliteral">&quot;o&quot;</span>,  <span class="stringliteral">&quot;order&quot;</span>,         Arg::NonNegative,
-     <span class="stringliteral">&quot;  -o \t--order=MAXIMUM  \tConsider models no higher than the given order&quot;</span> },
-    {SIGNRHO,   0,  <span class="stringliteral">&quot;r&quot;</span>,  <span class="stringliteral">&quot;signed-rho&quot;</span>,    Arg::None,
-     <span class="stringliteral">&quot;  -r \t--signed-rho     \tUse signed autocorrelation values when computing T0&quot;</span> },
+     <span class="stringliteral">&quot;  -h \t--help   \tDisplay this help message and immediately exit&quot;</span> },
+    {MAXORDER,  0,  <span class="stringliteral">&quot;m&quot;</span>,  <span class="stringliteral">&quot;order&quot;</span>,         Arg::NonNegative,
+     <span class="stringliteral">&quot;  -m \t--maxorder=P  \tConsider models of at most order AR(p=P)&quot;</span> },
+    {SUBMEAN,   0,  <span class="stringliteral">&quot;s&quot;</span>,  <span class="stringliteral">&quot;subtract-mean&quot;</span>, Arg::None,
+     <span class="stringliteral">&quot;  -s \t--subtract-mean  \tSubtract the sample mean from the incoming data&quot;</span> },
     {0,0,0,0,0,0}
 }
 </pre></div>
@@ -169,7 +170,7 @@ Variables</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Oct 4 2012 10:29:35 for ar by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Oct 5 2012 13:23:24 for github.com/RhysU/ar by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
