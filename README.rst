@@ -6,7 +6,7 @@ Overview
 
 This package contains a precision-agnostic, header-only, C++ implementation of
 Burg's recursive method for estimating autoregressive model parameters.  Many
-usability-related extensions, in particular Octave- and Python-friendly
+usability-related extensions, in particular Python-friendly
 functions, have been added to permit simply obtaining autocorrelation
 information from the resulting estimated model.
 
@@ -99,17 +99,28 @@ Trench-like algorithms and for faster, albeit much more complicated, variants.
 		8.16014e-14
 
 
+The automated model selection procedure exposed by *arsel.cpp* has been
+extensively tested against simulated data from the Lorenz attractor as
+implemented in *lorenz.cpp*.  Please see [Oliver2014] for full details.
+
+
 Contents
 --------
 
 *Makefile*
    Try ``make`` followed by ``make check``.  On Linux, try ``make stress`` to
    examine the implementation's performance when piping in plain text data.
-   Octave and/or Python functionality also will be built in-place when possible.
+   Python functionality also will be built in-place when possible.
 
 *ar.hpp*
   The standalone header implementing all algorithms.  Complete API
   documentation is available at http://rhysu.github.com/ar.
+
+*ar6.cpp*
+  A sample program generating data from an AR(6) process specified in
+  section 4.1 of [Beyhaghi2018].  Try ``./ar6 -b 5000 -t 50000 | cut -f2 |
+  ./arsel`` to see the statistical parameters estimated by ``arsel`` when
+  fed input from a realization of this process.
 
 *arsel.cpp*
    Given data on standard input, use Burg's method to compute a hierarchy of
@@ -117,15 +128,17 @@ Contents
    see available options.  This is perhaps the most useful standalone utility.
 
 *arsel-octfile.cpp*, *arcov-octfile.cpp*
-   Provides arsel.cpp-like capabilities for GNU Octave.  This is perhaps the
-   most feature-rich way to start using these AR tools.  See appendix A
-   ("Dynamically Linked Functions") within [Octave] for implementation details.
-   Also demonstrates how working storage may be reused across multiple
-   invocations to reduce the number of allocations for processing data sets.
+   These two Octave wrappers were removed after
+   http://github.com/RhysU/ar/releases/tag/0.1.5 on account of licensing
+   considerations.  The code followed appendix A ("Dynamically Linked
+   Functions") of [Octave].
 
 *ar-python.cpp*, *setup.py*
-   Provides some functionality as a Python extension module called 'ar'.
-   This is modeled after the Octave wrapper but is not yet as robust.
+   Provides some functionality as a Python extension module called
+   'ar'.  This is perhaps the easiest way to start using these AR tools.
+   Also demonstrates how working storage may be reused across multiple
+   invocations to reduce the number of allocations for processing
+   data sets.
 
 *test.cpp*
    A test driver for testing ``ar.hpp`` against benchmarks by [Bourke1998].
@@ -183,6 +196,16 @@ Contents
    The Lean Mean C++ Option Parser from http://optionparser.sourceforge.net
    which is used to parse command line arguments within sample applications.
 
+
+Attribution
+-----------
+
+If you find these tools useful towards publishing research, please consider
+citing:
+
+-- [Oliver2014] Todd A. Oliver, Nicholas Malaya, Rhys Ulerich, and Robert D. Moser. "Estimating uncertainties in statistics computed from direct numerical simulation." Physics of Fluids  26 (March 2014): 035101+. http://dx.doi.org/10.1063/1.4866813
+
+
 References
 ----------
 
@@ -191,6 +214,8 @@ References
 -- [Andersen1978]    Andersen, N. "Comments on the performance of maximum entropy algorithms." Proceedings of the IEEE 66 (November 1978): 1581-1582. http://dx.doi.org/10.1109/PROC.1978.11160
 
 -- [Bernardo1976]    Bernardo, J. M.  "Algorithm AS 103: Psi (digamma) function." Journal of the Royal Statistical Society.  Series C (Applied Statistics) 25 (1976). http://www.jstor.org/stable/2347257
+
+-- [Beyhaghi2018]    Beyhaghi, Pooriya and Alimohammadi, Shahrouz and Bewley Thomas. "Uncertainty Quantification of the time averaging of a Statistics Computed from Numerical Simulation of Turbulent Flow."  https://arxiv.org/abs/1802.01056v1
 
 -- [Bourke1998]      Bourke, Paul. AutoRegression Analysis, November 1998. http://paulbourke.net/miscellaneous/ar/
 

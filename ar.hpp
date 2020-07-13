@@ -7,6 +7,7 @@
 #ifndef AR_HPP
 #define AR_HPP
 
+#ifndef AR_SUPPRESS_DOXYGEN_MAINPAGE
 /**
  * @mainpage
  *
@@ -17,7 +18,15 @@
  * href="https://github.com/RhysU/ar/blob/master/README.rst"> README</a> for a
  * more detailed overview and http://github.com/RhysU/ar for project
  * information.
+ *
+ * If you find these tools useful towards publishing research, please consider
+ * citing:
+ * \li Todd A. Oliver, Nicholas Malaya, Rhys Ulerich, and Robert D. Moser.
+ *     "Estimating uncertainties in statistics computed from direct numerical
+ *     simulation." Physics of Fluids  26 (March 2014): 035101+.
+ *     http://dx.doi.org/10.1063/1.4866813
  */
+#endif /* AR_SUPPRESS_DOXYGEN_MAINPAGE */
 
 /** @file
  * Autoregressive process modeling tools in header-only C++.
@@ -434,14 +443,19 @@ ValueType welford_inner_product(InputIterator1 first1,
 /**
  * Robustly compute negative one half the reflection coefficient assuming
  * \f$\vec{a}\f$ and \f$\vec{b}\f$ contain real-valued backward and forward
- * prediction error sequences, respectively.
+ * prediction error sequences, respectively.  Zero is returned whenever the
+ * reflection coefficient numerator is identically zero, as otherwise
+ * constant zero signals produce undesired NaN reflection coefficients.
+ * The constant zero special case does not defeat NaN detection as any data
+ * introducing NaN into the denominator must introduce NaN into the numerator.
  *
  * @param[in] a_first Beginning of the first input range \f$\vec{a}\f$.
  * @param[in] a_last  Exclusive end of first input range \f$\vec{a}\f$.
  * @param[in] b_first Beginning of the second input range \f$\vec{b}\f$.
  *
  * @return \f$\frac{\vec{a}\cdot\vec{b}}
- *                 {\vec{a}\cdot\vec{a} + \vec{b}\cdot\vec{b}}\f$.
+ *                 {\vec{a}\cdot\vec{a} + \vec{b}\cdot\vec{b}}\f$
+ *         when that numerator is nonzero, else zero.
  *
  * @see Wikipedia's article on <a href="">Kahan summation</a> for
  *      background on how the accumulation error is reduced in the result.
@@ -481,7 +495,9 @@ negative_half_reflection_coefficient(InputIterator1 a_first,
         ns = nt;
     }
 
-    return (ns + nc) / (ds + dc);      // Correct final sums and form ratio
+    return ns + nc == 0                // Does special zero case apply?
+        ? 0                            // Yes, to avoid NaN from 0 / 0
+        : (ns + nc) / (ds + dc);       // No, correct final sums and form ratio
 }
 #else
 #warning Using Non-Kahan version of ar::negative_half_reflection_coefficient.
@@ -493,11 +509,13 @@ negative_half_reflection_coefficient(InputIterator1 a_first,
     {
         ValueType xa  = *a_first++;
         ValueType xb  = *b_first++;
-        ns           += xa * xb;
-        ds           += xa * xa + xb * xb;
+        ns           += xa * xb;            // Numerator
+        ds           += xa * xa + xb * xb;  // Denominator
     }
 
-    return ns / ds;
+    return ns == 0                          // Does special zero case apply?
+        ? 0                                 // Yes, to avoid NaN from 0 / 0
+        : ns / ds;                          // No, form ratio
 }
 #endif
 
@@ -667,6 +685,7 @@ std::size_t burg_method(InputIterator   data_first,
     {
         // Compute mu from f, b, and Dk and then update sigma2e and Ak using mu
         // Afterwards, Ak[1:kp1] contains AR(k) coefficients by the recurrence
+        // Must treat mu result of 0 / 0 as 0 to avoid NaNs on constant signals
         // By the recurrence, Ak[kp1] will also be the reflection coefficient
         Value mu = -2 * negative_half_reflection_coefficient<Value>(
                 f.begin() + kp1, f.end(), b.begin());
@@ -2209,7 +2228,7 @@ struct CIC : public criterion
  *
  * @param[in]  N        Sample count used to compute \f$\sigma^2_\epsilon\f$.
  * @param[in]  ordfirst The model order corresponding to \c first.
- *                      When \f$sigma^2_\epsilon\f$ is produced entirely by
+ *                      When \f$\sigma^2_\epsilon\f$ is produced entirely by
  *                      \ref burg_method with <tt>hierarchy == true</tt>,
  *                      this should be \c 0.
  * @param[in]  first    Beginning of the range holding \f$\sigma^2_\epsilon\f$
@@ -2309,7 +2328,6 @@ best_model(Integer1       N,
     // Sanity checks written to provide order messages readable by end users
     AR_ENSURE_ARG(sigma2e.size() > 0);
     const size_t maxorder = sigma2e.size() - 1;
-    AR_ENSURE_ARG(maxorder > 0);
     AR_ENSURE_ARG(is_nonnegative(minorder));
     AR_ENSURE_ARG(static_cast<size_t>(minorder) <= maxorder);
     AR_ENSURE_ARG(params .size() == (sigma2e.size()-1)*sigma2e.size()/2);

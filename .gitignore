@@ -16,6 +16,7 @@
 *.swp
 
 # Binaries
+ar6
 arsel
 collomb2009
 example
@@ -23,6 +24,14 @@ faber1986
 lorenz
 test
 zohar
+
+# Python artifacts
+.eggs
+ar.egg-info
+dist
+build
+
+nothing added to commit but untracked files present (use "git add" to track)
 
 # Octave octfiles
 *.oct

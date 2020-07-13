@@ -9,7 +9,7 @@ HOWFAST   ?= -g -O2 -DNDEBUG
 PRECISION ?= -DREAL=double
 CXXFLAGS  ?= $(HOWSTRICT) $(HOWFAST) $(PRECISION)
 
-all:     zohar example test arsel faber1986 collomb2009 lorenz
+all:     zohar example test ar6 arsel faber1986 collomb2009 lorenz
 
 CC = $(CXX) # Force compilation and linking with C++ compiler
 
@@ -21,6 +21,9 @@ example:   example.o
 
 test.o:    test.cpp    ar.hpp
 test:      test.o
+
+ar6.o:   ar6.cpp   ar.hpp
+ar6:     ar6.o
 
 arsel.o:   arsel.cpp   ar.hpp
 arsel:     arsel.o
@@ -35,7 +38,7 @@ lorenz.o:  lorenz.cpp
 lorenz:    lorenz.o
 
 clean:
-	rm -f example zohar test arsel collomb2009 faber1986 lorenz *.o
+	rm -f example zohar test ar6 arsel collomb2009 faber1986 lorenz *.o
 
 # Some test cases from http://paulbourke.net/miscellaneous/ar/
 check: zohar example test
@@ -65,25 +68,6 @@ stress: test
 	@printf "Fitting model to %g samples from %s...\n\n" $(COUNT) $(RAND)
 	$(TIME) ./test --subtract-mean <(echo $(ORDER)) <(od -tu1 -vAn -N$(COUNT) $(RAND))
 
-##################################################################
-# Expose functionality through GNU Octave when mkoctfile available
-##################################################################
-MKOCTFILE ?= $(shell which mkoctfile)
-ifneq "$(MKOCTFILE)" ""
-
-all:      octfiles
-OCTFILES := $(patsubst %-octfile.cpp,%.oct,$(wildcard *-octfile.cpp))
-octfiles: $(OCTFILES)
-
-%.oct : %-octfile.cpp ar.hpp
-	env "CXXFLAGS=$(HOWFAST)" $(MKOCTFILE) -v $< -o $@
-
-clean: octfiles-clean
-octfiles-clean:
-	rm -f $(OCTFILES)
-
-endif
-
 ###################################################################
 # Expose functionality as a Python module called 'ar' when possible
 ###################################################################
@@ -92,11 +76,11 @@ ifneq "$(PYTHON)" ""
 
 all:   ar.so
 ar.so: ar-python.cpp ar.hpp setup.py
-	$(PYTHON) setup.py build_ext --inplace --build-temp python-build
+	$(PYTHON) setup.py build_ext --inplace
 
 clean: python-clean
 python-clean:
-	rm -rf ar.so python-build
+	rm -rf ar.so ar.cpython*.so build
 
 endif
 
